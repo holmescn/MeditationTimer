@@ -1,20 +1,40 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button color="primary">
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large" class="ion-text-center">{{ timeRemain }}</ion-title>
     </ion-toolbar>
+    <ion-title>
+      <audio #player></audio>
+    </ion-title>
   </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>设置</ion-label>
+    </ion-list-header>
+    <ion-item button (click)="chooseTime($event)">
+      <ion-label>训练时长</ion-label>
+      <ion-note slot="end">请选择</ion-note>
+    </ion-item>
+    <ion-item button (click)="chooseSound($event)">
+      <ion-label>声音</ion-label>
+      <ion-note slot="end">请选择</ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full">开始</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PickerController, PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  timeRemain: string = "等待设置";
 
-  constructor() {}
+  constructor(private popover: PopoverController, private picker: PickerController) {
+  }
 
+  onClick(event) {
+    console.log("onClick");
+  }
 }
