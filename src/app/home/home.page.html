@@ -1,10 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="primary">
-      <ion-button color="primary">
+      <ion-button color="primary" (click)="onMenuClick($event)">
         <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <ion-title class="ion-text-center">冥想练习计时器</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,28 +13,31 @@
   <ion-card>
     <ion-card-header>
       <ion-card-subtitle></ion-card-subtitle>
-      <ion-card-title class="ion-text-center">{{ timeRemain }}</ion-card-title>
+      <ion-card-title class="ion-text-center">
+        <ion-text>{{ remainText }}</ion-text>
+      </ion-card-title>
     </ion-card-header>  
   </ion-card>
   <ion-list>
-    <ion-list-header>
-      <ion-label>设置</ion-label>
-    </ion-list-header>
-    <ion-item button (click)="pick('time')">
-      <ion-label>训练时长</ion-label>
-      <ion-note slot="end">{{ targetMinutes > 0 ? formatTime(targetMinutes) : '请选择' }}</ion-note>
-    </ion-item>
-    <ion-item button (click)="pick('sound')">
+    <ion-item (click)="pick('sound')">
       <ion-label>声音</ion-label>
-      <ion-note slot="end">请选择</ion-note>
+      <ion-note slot="end">{{ soundText }}</ion-note>
+    </ion-item>
+    <ion-item (click)="pick('time')">
+      <ion-label>训练时长</ion-label>
+      <ion-note slot="end">{{ durationText }}</ion-note>
     </ion-item>
   </ion-list>
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-button size="large" expand="full" (click)="onClick(state)">开始</ion-button>
+        <ion-button
+          size="large"
+          expand="full"
+          [disabled]="buttonDisabled"
+          (click)="onBtnClick($event)">{{ buttonText }}</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
-<audio #player src="/assets/sounds/happy-days-loop.wav"></audio>
+<audio #player [src]="soundSrc"></audio>
